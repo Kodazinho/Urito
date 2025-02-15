@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido - Sistema de Restaurante</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
+        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Registro de Pedido</h1>
+        
+        <div class="space-y-4">
+            <!-- Nome da Pessoa -->
+            <div>
+                <label for="customer-name" class="block text-sm font-medium text-gray-700">Nome do Cliente</label>
+                <input id="customer-name" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Digite o nome da pessoa">
+            </div>
+
+            <!-- Lista de Produtos -->
+            <div>
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione os Produtos</h2>
+
+                <div class="space-y-4">
+                    <!-- Produto 1 -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">Hambúrguer</span>
+                        <span class="text-gray-600">R$ 20,00</span>
+                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
+                    </div>
+
+                    <!-- Produto 2 -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">Pizza</span>
+                        <span class="text-gray-600">R$ 40,00</span>
+                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
+                    </div>
+
+                    <!-- Produto 3 -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-700">Suco Natural</span>
+                        <span class="text-gray-600">R$ 10,00</span>
+                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="flex items-center justify-between border-t pt-4 mt-4">
+                <span class="font-semibold text-gray-700">Total</span>
+                <span id="total" class="text-xl font-semibold text-gray-800">R$ 0,00</span>
+            </div>
+
+            <!-- Botão de Enviar Pedido -->
+            <div class="mt-6 text-center">
+                <button class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 w-full">
+                    Finalizar Pedido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lógica para adicionar valores ao total
+        let total = 0;
+        const buttons = document.querySelectorAll("button.bg-blue-500");
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const priceText = e.target.previousElementSibling.textContent;
+                const price = parseFloat(priceText.replace('R$ ', '').replace(',', '.'));
+                total += price;
+                document.getElementById("total").textContent = `R$ ${total.toFixed(2)}`;
+            });
+        });
+    </script>
+
+</body>
+</html>

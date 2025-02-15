@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use('/', require('./routes/index'));
+app.use('/', require('./routes/conf'));
 
 appSer.set('view engine', 'ejs');  
 appSer.set('views', path.join(__dirname, 'views'));
