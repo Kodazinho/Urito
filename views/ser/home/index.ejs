@@ -1,80 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedido - Sistema de Restaurante</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/lib/tailwind.js"></script>
+    <script defer src="/lib/flowbite.js"></script>
 </head>
+
 <body class="bg-gray-50 flex items-center justify-center min-h-screen">
 
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
-        <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Registro de Pedido</h1>
-        
-        <div class="space-y-4">
-            <!-- Nome da Pessoa -->
-            <div>
-                <label for="customer-name" class="block text-sm font-medium text-gray-700">Nome do Cliente</label>
-                <input id="customer-name" type="text" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Digite o nome da pessoa">
-            </div>
+    <form action="/" method="post" class="w-screen h-screen">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl m-10">
+            <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Informações do cliente</h1>
 
-            <!-- Lista de Produtos -->
-            <div>
-                <h2 class="text-xl font-semibold text-gray-800 mb-4">Selecione os Produtos</h2>
-
-                <div class="space-y-4">
-                    <!-- Produto 1 -->
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">Hambúrguer</span>
-                        <span class="text-gray-600">R$ 20,00</span>
-                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
-                    </div>
-
-                    <!-- Produto 2 -->
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">Pizza</span>
-                        <span class="text-gray-600">R$ 40,00</span>
-                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
-                    </div>
-
-                    <!-- Produto 3 -->
-                    <div class="flex items-center justify-between">
-                        <span class="text-gray-700">Suco Natural</span>
-                        <span class="text-gray-600">R$ 10,00</span>
-                        <button class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600">Adicionar</button>
-                    </div>
+            <div class="space-y-4">
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="email" name="floating_email" id="floating_email"
+                        class="text-black block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                        placeholder=" " required />
+                    <label for="floating_email"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome
+                        do cliente</label>
                 </div>
+
             </div>
-
-            <!-- Total -->
-            <div class="flex items-center justify-between border-t pt-4 mt-4">
-                <span class="font-semibold text-gray-700">Total</span>
-                <span id="total" class="text-xl font-semibold text-gray-800">R$ 0,00</span>
-            </div>
-
-            <!-- Botão de Enviar Pedido -->
-            <div class="mt-6 text-center">
-                <button class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 w-full">
-                    Finalizar Pedido
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Lógica para adicionar valores ao total
-        let total = 0;
-        const buttons = document.querySelectorAll("button.bg-blue-500");
-
-        buttons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const priceText = e.target.previousElementSibling.textContent;
-                const price = parseFloat(priceText.replace('R$ ', '').replace(',', '.'));
-                total += price;
-                document.getElementById("total").textContent = `R$ ${total.toFixed(2)}`;
-            });
-        });
-    </script>
+    </form>
 
 </body>
+
 </html>
