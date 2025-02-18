@@ -1,7 +1,7 @@
 {
-  "pending": [],
-  "whitelist": [
+  "pending": [
     "::1"
   ],
+  "whitelist": [],
   "blacklist": []
 }
