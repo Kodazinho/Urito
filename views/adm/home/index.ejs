@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./lib/tailwind.js"></script>
-    <script src="./lib/flowbite.js"></script>
+    <script src="/lib/vanilla.js"></script>
+    <script src="/lib/tailwind.js"></script>
+    <script defer src="/lib/flowbite.js"></script>
+    <script defer src="/lib/3deffect.js"></script>
+    <script defer src="/js/back.js"></script>
+    <script defer src="/js/3deffect.js"></script>
     <title>iRango | Administração</title>
 </head>
 
-<body class="font-sans bg-gray-100 h-screen overflow-hidden">
+<body class="font-sans bg-gradient-to-tr from-gray-400 via-gray-600 to-gray-900 h-screen overflow-hidden">
     <%- include('../partials/header.ejs') %>
+    <canvas id="stars" class="absolute top-0 -z-10"></canvas>
     
 </body>
 
