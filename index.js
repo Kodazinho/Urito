@@ -17,24 +17,28 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use('/', require('./routes/conf'));
+app.use(express.json({ limit: "10mb" }));
 
 appSer.set('view engine', 'ejs');  
 appSer.set('views', path.join(__dirname, 'views'));
 appSer.use(express.static(path.join(__dirname, 'public')));
 appSer.use(express.json());
 appSer.use('/', require('./routes/ser'));
+appSer.use(express.json({ limit: "10mb" }));
 
 appKit.set('view engine', 'ejs');  
 appKit.set('views', path.join(__dirname, 'views'));
 appKit.use(express.static(path.join(__dirname, 'public')));
 appKit.use(express.json());
 appKit.use('/', require('./routes/kit'));
+appKit.use(express.json({ limit: "10mb" }));
 
 appAdm.set('view engine', 'ejs');  
 appAdm.set('views', path.join(__dirname, 'views'));
 appAdm.use(express.static(path.join(__dirname, 'public')));
 appAdm.use(express.json());
 appAdm.use('/', require('./routes/adm'));
+appAdm.use(express.json({ limit: "10mb" }));
 
 app.listen(port, () => {
     console.log(`⚙️ | Servidor configurações aberto em ` + `http://localhost:${port}`.rainbow);
