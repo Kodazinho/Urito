@@ -40,11 +40,16 @@ class Database {
         });
     }
 
+    async produtos() {
+        const produtos = await this.connection.promise().query('SELECT * FROM produtos');
+        return produtos[0]; 
+    }
+    
+
 }
 
 
 const database = new Database(process.env.host, process.env.user, process.env.pass, process.env.database);
-
 
 
 module.exports = database;
