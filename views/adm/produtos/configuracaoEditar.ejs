@@ -8,7 +8,7 @@
     <script src="/lib/tailwind.js"></script>
     <script defer src="/js/back.js"></script>
     <script defer src="/js/brlformat.js"></script>
-    <title>iRango | Administração</title>
+    <title>iRango | Editar</title>
 </head>
 
 <body class="font-sans bg-gradient-to-tr from-gray-400 via-gray-600 to-gray-900 h-screen overflow-hidden">
@@ -24,7 +24,7 @@
                 </svg>
                 <span class="sr-only">Info</span>
                 <div>
-                  <span class="font-medium">Sucesso!</span> Novo produto registrado.
+                  <span class="font-medium">Sucesso!</span> Produto editado.
                 </div>
               </div>
               <% } %>
@@ -32,12 +32,12 @@
 
             <form action="" method="post" enctype="multipart/form-data"
                 class="bg-gradient-to-tl from-gray-600 to-gray-700 p-6 rounded-lg shadow-lg w-full m-10 max-w-[35vw] border border-white">
-                <h1 class="text-3xl font-semibold text-center text-white mb-6">Novo Produto</h1>
+                <h1 class="text-3xl font-semibold text-center text-white mb-6">Editar Produto</h1>
                 <div class="space-y-4">
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="nome" id="floating_email"
                             class="text-lg text-white block py-2.5 px-0 w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required />
+                            placeholder=" " required value="<%= produto.nome %>" />
                         <label for="floating_email"
                             class="peer-focus:font-medium absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nome
                             do produto</label>
@@ -45,7 +45,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="ingredientes" id="floating_email"
                             class="text-lg text-white block py-2.5 px-0 w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required />
+                            placeholder=" " required value="<%= produto.ingredientes %>" />
                         <label for="floating_email"
                             class="peer-focus:font-medium absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Ingredientes
                             do produto</label>
@@ -53,7 +53,7 @@
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="text" name="preco" id="floating_email"
                             class="text-lg text-white block py-2.5 px-0 w-full bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                            placeholder=" " required onKeyPress="return(moeda(this,'.',',',event))" />
+                            placeholder=" " required onKeyPress="return(moeda(this,'.',',',event))" value="<%= produto.preco %>" />
                         <label for="floating_email"
                             class="peer-focus:font-medium absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Preço</label>
                     </div>
@@ -62,7 +62,7 @@
                         <input type="file" name="imagem" id="file-input" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
     file:bg-gray-50 file:border-0
     file:me-4
-    file:py-3 file:px-4 text-white file:text-black" required >
+    file:py-3 file:px-4 text-white file:text-black" required>
                     </div>
                     <button type="submit" class="text-white w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Registrar</button>
                 </div>

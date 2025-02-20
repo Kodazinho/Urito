@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="overflow-x-hidden max-h-screen">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/lib/vanilla.js"></script>
+    <script src="/lib/tailwind.js"></script>
+    <script defer src="/lib/flowbite.js"></script>
+    <script defer src="/lib/3deffect.js"></script>
+    <script defer src="/js/back.js"></script>
+    <script defer src="/js/3deffect.js"></script>
+    <title>iRango | Editar</title>
+</head>
+
+<body class="font-sans bg-gradient-to-tr from-gray-400 via-gray-600 to-gray-900 h-screen overflow-hidden">
+    <%- include('../partials/header.ejs') %>
+    <canvas id="stars" class="absolute top-0 -z-10"></canvas>
+    <main class="w-screen h-screen flex items-center justify-center">
+        <div class="bg-gradient-to-tl from-gray-600 to-gray-800 p-6 rounded-lg shadow-lg w-full m-10 max-w-[35vw] flex gap-5 flex-col items-center max-h-[80vh] border border-white">
+            <h1 class="text-3xl font-semibold text-center text-white mb-6">Editar</h1>
+            <div class="relative w-full">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                    </svg>
+                </div>
+                <input type="search" id="default-search"
+                    class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 "
+                    placeholder="Batata Frita, Coca Cola, Pepsi . . ." required />
+            </div>
+
+            <div class="w-full flex flex-col gap-5 overflow-y-auto">
+
+                <% produtos.forEach(produto => { %>
+            <a href="#"
+                class="d3d relative w-full flex flex-col items-center bg-gray-700 border border-gray-50 rounded-lg shadow-sm md:flex-row md:max-w-xl transition-all duration-200 hover:bg-gray-900">
+                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+                    src="data:image/png;base64,<%= produto.imagem %>" alt="">
+                <div class="flex gap-1 absolute bottom-3 right-3">
+                    <button onclick="window.location.href = '/produto/deletar/<%= produto.id %>'"
+                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                          </svg></button>
+                      <button onclick="window.location.href = '/produto/editar/<%= produto.id %>'"
+                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                      </svg></button>
+                </div>
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                    <h5 class="text-2xl text-white font-extrabold"><%= produto.nome %><small
+                            class="ms-2 font-semibold text-gray-400"><%= produto.preco %></small></h5>
+                    <p class="mb-3 font-normal text-gray-300"><%= produto.ingredientes %></p>
+                </div>
+            </a>
+
+            <% }) %>
+
+        </div>
+    </div>
+    </main>
+</body>
+
+</html>

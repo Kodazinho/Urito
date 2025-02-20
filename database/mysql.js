@@ -44,8 +44,55 @@ class Database {
         const produtos = await this.connection.promise().query('SELECT * FROM produtos');
         return produtos[0]; 
     }
+    async produto(id) {
+        const produto = await this.connection.promise().query('SELECT * FROM produtos WHERE id = ' + id);
+        return produto[0][0]; 
+    }
+    async edit(id, nome, preco, ingredientes, imagem) {
+        await this.connection.promise().query(
+            `UPDATE produtos SET nome = ?, preco = ?, ingredientes = ?, imagem = ? WHERE id = ?`,
+            [nome, parseFloat(preco), ingredientes, imagem, id]
+        );
+    }
+    async delete(id) {
+        await this.connection.promise().query('DELETE FROM produtos WHERE id = ?', [id]);
+    }
+    async anotar(nome, pedido) {
+        let total = 0;
+        pedido.forEach(item => {
+            total += item.preco * item.quantidade;
+        });
     
-
+        const connection = this.connection.promise();
+        
+        try {
+            await connection.beginTransaction();
+    
+            const [resultPedido] = await this.connection.promise().query(
+                'INSERT INTO pedido (preco, nome, finalizado) VALUES (?, ?, ?)',
+                [total, nome, false]
+            );
+    
+            const pedidoId = resultPedido.insertId;
+    
+            for (const item of pedido) {
+                await connection.query(
+                    'INSERT INTO produto_pedido (idpedido, quantidade, nome, preco) VALUES (?, ?, ?, ?)',
+                    [pedidoId, item.quantidade, item.nome, item.preco]
+                );
+            }
+    
+            await connection.commit();
+            return pedidoId;
+    
+        } catch (error) {
+            await connection.rollback();
+            throw error;
+        }
+    }
+    
+    
+    
 }
 
 

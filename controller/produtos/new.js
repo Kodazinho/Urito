@@ -9,7 +9,7 @@ const multer = require("multer");
         const imagem64 = req.file.buffer.toString("base64");
         await database.newProduto(nome, preco, ingredientes, imagem64);
 
-        res.redirect('/')
+        res.render('adm/produtos/index', {sucess: true});
     }
 
     module.exports = controller;

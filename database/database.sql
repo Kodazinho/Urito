@@ -1,11 +1,28 @@
 DROP DATABASE IF EXISTS irango;
 CREATE DATABASE irango;
 USE irango;
+SET GLOBAL max_allowed_packet = 67108864;
 
-CREATE TABLE produtos(
+CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    preco DECIMAL(10,2),
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
     ingredientes TEXT,
-    imagem TEXT
-)
+    imagem LONGTEXT
+);
+
+CREATE TABLE pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    preco DECIMAL(10,2) NOT NULL,
+    finalizado BOOL DEFAULT FALSE,
+    nome TEXT NOT NULL
+);
+
+CREATE TABLE produto_pedido (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idpedido INT NOT NULL,
+    quantidade INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (idpedido) REFERENCES pedido(id) ON DELETE CASCADE
+);
