@@ -14,7 +14,7 @@ CREATE TABLE produtos (
 CREATE TABLE pedido (
     id INT AUTO_INCREMENT PRIMARY KEY,
     preco DECIMAL(10,2) NOT NULL,
-    finalizado BOOL DEFAULT FALSE,
+    andamento INT DEFAULT 0,
     nome TEXT NOT NULL
 );
 

@@ -69,8 +69,8 @@ class Database {
             await connection.beginTransaction();
     
             const [resultPedido] = await this.connection.promise().query(
-                'INSERT INTO pedido (preco, nome, finalizado) VALUES (?, ?, ?)',
-                [total, nome, false]
+                'INSERT INTO pedido (preco, nome, andamento) VALUES (?, ?, ?)',
+                [total, nome, 0]
             );
     
             const pedidoId = resultPedido.insertId;
@@ -90,6 +90,31 @@ class Database {
             throw error;
         }
     }
+
+    async andamento(id) {
+        await this.connection.promise().query(
+            `UPDATE pedido SET andamento = ? WHERE id = ?`,
+            [1, id]
+        );
+    }
+    
+    async finalizar(id) {
+        await this.connection.promise().query(
+            `UPDATE pedido SET andamento = ? WHERE id = ?`,
+            [2, id]
+        );
+    }
+
+    async pedidos() {
+        const [pedidos] = await this.connection.promise().query('SELECT * FROM pedido');
+        const produtosEpedidos = [];
+        for (const pedido of pedidos) {
+            const [produtos] = await this.connection.promise().query('SELECT * FROM produto_pedido WHERE idpedido = ?', [pedido.id]);
+            produtosEpedidos.push({ pedido, produtos });
+        }
+        return produtosEpedidos
+    }
+    
     
     
     
@@ -97,6 +122,5 @@ class Database {
 
 
 const database = new Database(process.env.host, process.env.user, process.env.pass, process.env.database);
-
 
 module.exports = database;
