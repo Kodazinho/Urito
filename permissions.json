@@ -1,7 +1,5 @@
 {
-  "pending": [
-    "127.0.0.1"
-  ],
+  "pending": [],
   "whitelist": [
     "::1"
   ],
