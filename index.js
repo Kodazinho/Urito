@@ -38,6 +38,7 @@ app.listen(port, () => {
 
 appSer.listen(portSer, () => {
     console.log(`🍾 | Servidor atendimento aberto em ` + `http://localhost:${portSer}`.rainbow);
+    console.log(`🖨️ | Servidor pedidos aberto em ` + `http://localhost:${portSer}/pedidos`.rainbow);
 });
 
 serverKit.listen(portKit, () => {
