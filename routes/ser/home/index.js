@@ -7,6 +7,10 @@ routes.get('/', async (req, res) => {
     res.render('./ser/home/index', {produtos: produtos});
 })
 
+routes.get('/telao', (req, res) => {
+    res.render('./ser/telao/index');
+})
+
 routes.post('/', require('../../../controller/pedido/anotar'));
 
 module.exports = routes;
