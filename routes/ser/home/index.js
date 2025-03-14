@@ -7,8 +7,16 @@ routes.get('/', async (req, res) => {
     res.render('./ser/home/index', {produtos: produtos});
 })
 
+routes.get('/retirar', async (req, res) => {
+    res.render('./ser/retirar/index');
+})
+
 routes.get('/telao', (req, res) => {
     res.render('./ser/telao/index');
+})
+
+routes.post('/retirar/:id', async (req, res) => {
+    await database.retirar(req.params.id);
 })
 
 routes.post('/', require('../../../controller/pedido/anotar'));

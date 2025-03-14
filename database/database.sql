@@ -16,7 +16,8 @@ CREATE TABLE pedido (
     preco DECIMAL(10,2) NOT NULL,
     andamento INT DEFAULT 0,
     nome TEXT NOT NULL,
-    retirado BOOLEAN DEFAULT FALSE
+    retirado BOOLEAN DEFAULT FALSE,
+    observacao TEXT
 );
 
 CREATE TABLE produto_pedido (

@@ -13,8 +13,8 @@ async function socket(io) {
       const pedidos = await database.pedidos();
       const status = await database.status();
       io.emit("pedidos", pedidos); 
-      socket.emit("status", status); 
-    }, 750); 
+      io.emit("status", status); 
+    }, 100); 
   });
 }
 

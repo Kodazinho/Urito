@@ -57,7 +57,7 @@ class Database {
     async delete(id) {
         await this.connection.promise().query('DELETE FROM produtos WHERE id = ?', [id]);
     }
-    async anotar(nome, pedido) {
+    async anotar(nome, pedido, observacao) {
         let total = 0;
         pedido.forEach(item => {
             total += item.preco * item.quantidade;
@@ -69,8 +69,8 @@ class Database {
             await connection.beginTransaction();
     
             const [resultPedido] = await this.connection.promise().query(
-                'INSERT INTO pedido (preco, nome, andamento) VALUES (?, ?, ?)',
-                [total, nome, 0]
+                'INSERT INTO pedido (preco, nome, andamento, observacao) VALUES (?, ?, ?, ?)',
+                [total, nome, 0, observacao]
             );
     
             const pedidoId = resultPedido.insertId;
@@ -121,7 +121,10 @@ class Database {
     }
     
     async retirar(id){
-
+        await this.connection.promise().query(
+            `UPDATE pedido SET retirado = ? WHERE id = ?`,
+            [1, id]
+        ); 
     }
     
 }

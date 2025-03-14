@@ -58,6 +58,7 @@ function total() {
 
 async function finalizar() {
   const nome = document.getElementById("nomeCliente").value;
+  const obs = document.getElementById("observacao").value;
     if (pedido.length === 0) {
         return;
     }
@@ -66,13 +67,14 @@ async function finalizar() {
         const response = await fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ pedido, nome }),
+            body: JSON.stringify({ pedido, nome, obs }),
         });
 
         const data = await response.json();
         pedido = []; 
         total(); 
         document.getElementById("nomeCliente").value = '';
+        document.getElementById("observacao").value = '';
     } catch (error) {
     }
 }
