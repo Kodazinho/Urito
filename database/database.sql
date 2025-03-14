@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS irango;
-CREATE DATABASE irango;
-USE irango;
+DROP DATABASE IF EXISTS urito;
+CREATE DATABASE urito;
+USE urito;
 SET GLOBAL max_allowed_packet = 67108864;
 
 CREATE TABLE produtos (
@@ -17,7 +17,8 @@ CREATE TABLE pedido (
     andamento INT DEFAULT 0,
     nome TEXT NOT NULL,
     retirado BOOLEAN DEFAULT FALSE,
-    observacao TEXT
+    observacao TEXT,
+    data DATE DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE produto_pedido (
