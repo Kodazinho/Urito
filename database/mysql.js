@@ -115,6 +115,11 @@ class Database {
         return produtosEpedidos
     }
     
+    async status() {
+        const status = await this.connection.promise().query('SELECT * FROM pedido');
+        return status[0];
+    }
+    
     
     
     

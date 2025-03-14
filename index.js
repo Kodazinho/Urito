@@ -28,15 +28,18 @@ setupApp(appKit, 'views', './routes/kit');
 setupApp(appAdm, 'views', './routes/adm');
 
 const serverKit = http.createServer(appKit);
-const io = socketIo(serverKit);
+const serverSer = http.createServer(appSer);
+const ioKit = socketIo(serverKit);
+const ioSer = socketIo(serverSer);
 const socket = require('./socket/index');
-socket(io);
+socket(ioKit);
+socket(ioSer);
 
 app.listen(port, () => {
     console.log(`⚙️ | Servidor configurações aberto em ` + `http://localhost:${port}`.rainbow);
 });
 
-appSer.listen(portSer, () => {
+serverSer.listen(portSer, () => {
     console.log(`🍾 | Servidor atendimento aberto em ` + `http://localhost:${portSer}`.rainbow);
     console.log(`🖨️ | Servidor pedidos aberto em ` + `http://localhost:${portSer}/pedidos`.rainbow);
 });
