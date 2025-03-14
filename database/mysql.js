@@ -120,8 +120,9 @@ class Database {
         return status[0];
     }
     
-    
-    
+    async retirar(id){
+
+    }
     
 }
 
