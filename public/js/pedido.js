@@ -17,7 +17,8 @@ function add(id) {
             id,
             nome: produto.nome,
             preco: produto.preco,
-            quantidade: 1
+            quantidade: 1, 
+            promo: produto.promo
         });
     }
     total();
@@ -44,7 +45,9 @@ function total() {
     divProdo.innerHTML = ""; 
     let total = 0;
     pedido.forEach(produto => {
-        total += produto.preco * produto.quantidade;
+      let precoTotal = produto.preco * produto.quantidade;
+      let desconto = (produto.promo / 100) * produto.preco * produto.quantidade;
+      total += precoTotal - desconto;
         const item = document.createElement("div");
         item.innerHTML = `<p class="text-2xl font-extrabold dark:text-white border-b border-white">
             ${produto.quantidade}x | ${produto.nome} 
@@ -52,7 +55,7 @@ function total() {
         </p>`;
         divProdo.appendChild(item);
     });
-    document.getElementById("total").innerText = total.toFixed(2);
+    document.getElementById("total").innerText = ('R$ ' + total.toFixed(2));
 }
 
 
@@ -90,22 +93,27 @@ function renderProducts(list) {
       produtoElement.href = "#";
       produtoElement.className = "d3d relative w-full flex flex-col items-center bg-gray-700 border border-gray-50 rounded-lg shadow-sm md:flex-row md:max-w-xl transition-all duration-200 hover:bg-gray-900";
       produtoElement.innerHTML = `
-        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
-          src="data:image/png;base64,${produto.imagem}" alt="">
-        <div class="flex gap-1 absolute bottom-3 right-3">
+        <div class="flex flex-col md:flex-row rounded-lg shadow-md overflow-hidden w-full">
+  <img class="w-full md:w-48 object-cover rounded-t-lg md:rounded-none md:rounded-s-lg" 
+       src="data:image/png;base64,${produto.imagem}" alt="">
+  <div class="flex flex-col justify-between p-4 leading-normal flex-1">
+    <h5 class="text-2xl text-white font-extrabold">
+      ${produto.nome} 
+      <small class="ms-2 font-semibold text-gray-400 ${produto.inPromo == true ? 'line-through' : ''}">R$ ${produto.preco.toFixed(2)}</small>
+      ${produto.inPromo == true ? `<small class="ms-2 font-semibold text-gray-400">R$ ${produto.preco.toFixed(2) - ((produto.promo / 100) * produto.preco.toFixed(1))}   (${produto.promo}% OFF)</small>` : ''}
+    </h5>
+    <p class="mb-3 font-normal text-gray-300">
+      ${produto.ingredientes}
+    </p>
+    <div class="flex gap-1 justify-end">
           <button type="button" onclick="remove(${produto.id})"
             class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">-</button>
           <button type="button" onclick="add(${produto.id})"
             class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">+</button>
         </div>
-        <div class="flex flex-col justify-between p-4 leading-normal">
-          <h5 class="text-2xl text-white font-extrabold">
-            ${produto.nome} <small class="ms-2 font-semibold text-gray-400">R$ ${produto.preco.toFixed(2)}</small>
-          </h5>
-          <p class="mb-3 font-normal text-gray-300">
-            ${produto.ingredientes}
-          </p>
-        </div>
+  </div>
+</div>
+
       `;
       container.appendChild(produtoElement);
     });

@@ -32,12 +32,18 @@ class Database {
     }
 
     newProduto(nome, preco, ingredientes, imagem) {
-        this.connection.query(`INSERT INTO produtos (nome, preco, ingredientes, imagem) VALUES ('${nome}', '${preco}', '${ingredientes}', '${imagem}')`, (err, result) => {
-            if (err) {
-                console.error('Erro ao inserir:', err);
-                return;
+        preco = preco.toString().replace(",", "."); 
+    
+        this.connection.query(
+            `INSERT INTO produtos (nome, preco, ingredientes, imagem) VALUES (?, ?, ?, ?)`,
+            [nome, preco, ingredientes, imagem], 
+            (err, result) => {
+                if (err) {
+                    console.error('Erro ao inserir:', err);
+                    return;
+                }
             }
-        });
+        );
     }
 
     async produtos() {
@@ -49,6 +55,12 @@ class Database {
         return produto[0][0];
     }
     async edit(id, nome, preco, ingredientes, imagem) {
+        if(!imagem){
+        return await this.connection.promise().query(
+            `UPDATE produtos SET nome = ?, preco = ?, ingredientes = ? WHERE id = ?`,
+            [nome, parseFloat(preco), ingredientes, id]
+        );
+        }
         await this.connection.promise().query(
             `UPDATE produtos SET nome = ?, preco = ?, ingredientes = ?, imagem = ? WHERE id = ?`,
             [nome, parseFloat(preco), ingredientes, imagem, id]
@@ -60,7 +72,7 @@ class Database {
     async anotar(nome, pedido, observacao) {
         let total = 0;
         pedido.forEach(item => {
-            total += item.preco * item.quantidade;
+            total += (item.preco * item.quantidade) - (((item.promo / 100) * item.preco) * item.quantidade);
         });
 
         const connection = this.connection.promise();
@@ -249,7 +261,19 @@ class Database {
         return estatistica;
     }
     
-    
+    async promocao(id, promo){
+        if(promo == 0){
+            return await this.connection.promise().query(
+                `UPDATE produtos SET promo = ?, inPromo = ? WHERE id = ?`,
+                [0, 0, id]
+            );
+        }else{
+            return await this.connection.promise().query(
+                `UPDATE produtos SET promo = ?, inPromo = ? WHERE id = ?`,
+                [promo, 1, id]
+            );
+        }
+    }
     
     
 

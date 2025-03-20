@@ -13,7 +13,6 @@
     <script defer src="/js/3deffect.js"></script>
     <script defer src="/js/pedido.js"></script>
 </head>
-
 <body class="bg-gradient-to-tr from-gray-900 via-gray-950 to-black flex items-center justify-center min-h-screen">
   <%- include('../partials/header.ejs') %>
 
@@ -22,8 +21,9 @@
     <form action="/" method="post" class="w-screen h-screen flex justify-evenly">
         <div class="w-1/2 flex items-center justify-center flex-col">
             <div
-                class="bg-gradient-to-tl from-gray-600 to-gray-800 p-6 rounded-lg shadow-lg w-full m-10 max-w-[35vw] border border-white">
-                <h1 class="text-3xl font-semibold text-center text-white mb-6">Informações do cliente</h1>
+                class="card bg-gradient-to-tl from-gray-600 to-gray-800 p-6 rounded-lg shadow-lg w-full m-10 max-w-[35vw] border border-white">
+                
+                <h1 class="text-3xl font-bold text-center bg-gradient-to-tr from-white to-slate-600 bg-clip-text text-transparent mb-6">Informações do cliente</h1>
                 <div class="space-y-4">
                     <div class="relative z-0 w-full mb-5 group">
                         <input type="email" name="floating_email" id="nomeCliente"
@@ -43,7 +43,7 @@
             </div>
             <div
                 class="bg-gradient-to-tl from-gray-600 to-gray-800 p-6 rounded-lg shadow-lg w-full max-w-[35vw] m-10 min-h-[40vh] max-h-[70vh] relative border border-white overflow-x-auto">
-                <h1 class="text-3xl font-semibold text-center text-white mb-6">Resumo do pedido</h1>
+                <h1 class="text-3xl font-bold text-center bg-gradient-to-tr from-white to-slate-600 bg-clip-text text-transparent mb-6">Resumo do pedido</h1>
 
             <div id="produtos">
                 
@@ -59,7 +59,7 @@
                     </button>
 
                     <div
-                        class="w-[8vw] p-2 text-xl text-white font-bold rounded-lg text-center flex justify-center items-center gap-2">
+                        class="p-2 text-xl text-white font-bold rounded-lg text-center flex justify-center items-center gap-2">
                         <span class="text-xl">Total:</span> <p id="total">R$ 0.00</p>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         </div>
         <div class="w-1/2 flex items-center justify-center">
             <div class="bg-gradient-to-tl from-gray-600 to-gray-800 p-6 rounded-lg shadow-lg w-full m-10 max-w-[35vw] flex gap-5 flex-col items-center max-h-[80vh] border border-white">
-              <h1 class="text-3xl font-semibold text-center text-white mb-6">Produtos</h1>
+              <h1 class="text-3xl font-bold text-center bg-gradient-to-tr from-white to-slate-600 bg-clip-text text-transparent mb-6">Produtos</h1>
           
               <div class="relative w-full">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -96,7 +96,9 @@
                   nome: "<%- produto.nome || '' %>",
                   preco: <%= produto.preco || 0 %>,
                   ingredientes: "<%- produto.ingredientes || '' %>",
-                  imagem: "<%- produto.imagem %>"
+                  imagem: "<%- produto.imagem %>",
+                  inPromo: <%= produto.inPromo %>,
+                  promo: <%= produto.promo %>
                 },
               <% }) %>
             ];
