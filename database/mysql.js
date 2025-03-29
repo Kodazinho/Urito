@@ -139,7 +139,7 @@ class Database {
         );
     }
 
-    async semanal() {
+    async Vsemanal() {
         const pedidos = await this.pedidos();
         const dia = new Date();
         const estatistica = [0, 0, 0, 0, 0, 0, 0]; 
@@ -174,7 +174,129 @@ class Database {
         return estatistica;
     }
 
-    async mensal() {
+    async Vmensal() {
+        const pedidos = await this.pedidos();
+        const dia = new Date();
+        const estatistica = new Array(31).fill(0);  
+    
+        pedidos.forEach(pedido => {
+            if(pedido.pedido.retirado != true){
+                return;
+            }
+            if (pedido.pedido && pedido.pedido.data) {
+                const dataPedido = new Date(pedido.pedido.data);
+                if (validOthersCamps(dia, dataPedido)) {
+                    const diaDoPedido = dataPedido.getDate(); 
+    
+                    if (diaDoPedido == dia.getDate()) {
+                        estatistica[30]++; 
+                    } else if (diaDoPedido == (dia.getDate() - 1)) {
+                        estatistica[29]++;  
+                    } else if (diaDoPedido == (dia.getDate() - 2)) {
+                        estatistica[28]++;  
+                    } else if (diaDoPedido == (dia.getDate() - 3)) {
+                        estatistica[27]++;
+                    } else if (diaDoPedido == (dia.getDate() - 4)) {
+                        estatistica[26]++;
+                    } else if (diaDoPedido == (dia.getDate() - 5)) {
+                        estatistica[25]++;
+                    } else if (diaDoPedido == (dia.getDate() - 6)) {
+                        estatistica[24]++;
+                    } else if (diaDoPedido == (dia.getDate() - 7)) {
+                        estatistica[23]++;
+                    } else if (diaDoPedido == (dia.getDate() - 8)) {
+                        estatistica[22]++;
+                    } else if (diaDoPedido == (dia.getDate() - 9)) {
+                        estatistica[21]++;
+                    } else if (diaDoPedido == (dia.getDate() - 10)) {
+                        estatistica[20]++;
+                    } else if (diaDoPedido == (dia.getDate() - 11)) {
+                        estatistica[19]++;
+                    } else if (diaDoPedido == (dia.getDate() - 12)) {
+                        estatistica[18]++;
+                    } else if (diaDoPedido == (dia.getDate() - 13)) {
+                        estatistica[17]++;
+                    } else if (diaDoPedido == (dia.getDate() - 14)) {
+                        estatistica[16]++;
+                    } else if (diaDoPedido == (dia.getDate() - 15)) {
+                        estatistica[15]++;
+                    } else if (diaDoPedido == (dia.getDate() - 16)) {
+                        estatistica[14]++;
+                    } else if (diaDoPedido == (dia.getDate() - 17)) {
+                        estatistica[13]++;
+                    } else if (diaDoPedido == (dia.getDate() - 18)) {
+                        estatistica[12]++;
+                    } else if (diaDoPedido == (dia.getDate() - 19)) {
+                        estatistica[11]++;
+                    } else if (diaDoPedido == (dia.getDate() - 20)) {
+                        estatistica[10]++;
+                    } else if (diaDoPedido == (dia.getDate() - 21)) {
+                        estatistica[9]++;
+                    } else if (diaDoPedido == (dia.getDate() - 22)) {
+                        estatistica[8]++;
+                    } else if (diaDoPedido == (dia.getDate() - 23)) {
+                        estatistica[7]++;
+                    } else if (diaDoPedido == (dia.getDate() - 24)) {
+                        estatistica[6]++;
+                    } else if (diaDoPedido == (dia.getDate() - 25)) {
+                        estatistica[5]++;
+                    } else if (diaDoPedido == (dia.getDate() - 26)) {
+                        estatistica[4]++;
+                    } else if (diaDoPedido == (dia.getDate() - 27)) {
+                        estatistica[3]++;
+                    } else if (diaDoPedido == (dia.getDate() - 28)) {
+                        estatistica[2]++;
+                    } else if (diaDoPedido == (dia.getDate() - 29)) {
+                        estatistica[1]++;
+                    } else if (diaDoPedido == (dia.getDate() - 30)) {
+                        estatistica[0]++;
+                    }
+                }
+            }
+        });
+    
+        function validOthersCamps(date1, date2) {
+            return date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear(); 
+        }
+        return estatistica;
+    }
+    
+    async Lsemanal() {
+        const pedidos = await this.pedidos();
+        const dia = new Date();
+        const estatistica = [0, 0, 0, 0, 0, 0, 0]; 
+        pedidos.forEach(pedido => {
+            if(pedido.pedido.retirado != true){
+                return;
+            }
+            if (pedido.pedido && pedido.pedido.data) {
+                const dataPedido = new Date(pedido.pedido.data);
+                if (validOthersCamps(dia, dataPedido)) {
+                    if(dataPedido.getDate() == dia.getDate()){
+                        estatistica[6]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 1)){
+                        estatistica[5]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 2)){
+                        estatistica[4]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 3)){
+                        estatistica[3]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 4)){
+                        estatistica[2]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 5)){
+                        estatistica[1]++;
+                    }else if(dataPedido.getDate() == (dia.getDate() - 6)){
+                        estatistica[0]++;
+                    }
+                }
+            }
+        });
+        function validOthersCamps(date1, date2) {
+            return date1.getMonth() === date2.getMonth() && date1.getFullYear() === date2.getFullYear();
+        }
+        return estatistica;
+    }
+
+    async Lmensal() {
         const pedidos = await this.pedidos();
         const dia = new Date();
         const estatistica = new Array(31).fill(0);  
