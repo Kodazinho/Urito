@@ -6,7 +6,7 @@ async function key(req, res, next) {
     }
 
     try {
-        const response = await fetch(`http://localhost:5050/key/${config.key}`, {
+        const response = await fetch(`http://urito.onrender.com/key/${config.key}`, {
             method: 'POST'
         });
 
