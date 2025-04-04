@@ -15,7 +15,11 @@ async function key(req, res, next) {
         if (result.sucess == true) {
             next();
         } else {
+            if(result.erro == true){
             res.status(503).send({ error: 'A chave registrada no servidor é inválida.' });
+        }else{
+            res.status(503).send({ error: 'Endereço IPv4 negado, configure corretamente no site.' });
+        }
         }
     } catch (error) {
         console.error('Erro ao verificar chave:', error);
