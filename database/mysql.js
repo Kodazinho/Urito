@@ -397,7 +397,26 @@ class Database {
         }
     }
     
+    async toggleProduto(id) {
+        id = Number(id);
+        const [rows] = await this.connection.promise().query(
+            `SELECT * FROM produtos WHERE id = ?`,
+            [id]
+        );
     
+        const produto = rows[0];
+        if (!produto) {
+            return false;
+        }
+    
+        const novoMostrar = produto.mostrar == 1 ? 0 : 1;
+    
+        await this.connection.promise().query(
+            `UPDATE produtos SET mostrar = ? WHERE id = ?`,
+            [novoMostrar, id]
+        );
+        return true;
+    }
 
 }
 

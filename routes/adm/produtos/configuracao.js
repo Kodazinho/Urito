@@ -15,6 +15,8 @@ routes.get('/:id', async (req, res) => {
     res.render('./adm/produtos/configuracaoEditar', {produto: produto});
 })
 
+routes.get('/toggle/:id', require('../../../controller/produtos/toggle'));
+
 routes.get('/deletar/:id', require('../../../controller/produtos/deletar'));
 
 routes.post('/:id', upload.single("imagem"), require('../../../controller/produtos/editar'));

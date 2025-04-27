@@ -9,6 +9,7 @@ CREATE TABLE produtos (
     preco DECIMAL(10,2) NOT NULL,
     promo INTEGER NOT NULL,
     inPromo BOOLEAN NOT NULL DEFAULT false,
+    mostrar BOOLEAN DEFAULT 1,
     ingredientes TEXT,
     imagem LONGTEXT
 );

@@ -91,6 +91,7 @@
           <script>
             const produtos = [
               <% produtos.forEach(produto => { %>
+                <% if(produto.mostrar){ %>
                 {
                   id: <%= produto.id %>,
                   nome: "<%- produto.nome || '' %>",
@@ -100,6 +101,7 @@
                   inPromo: <%= produto.inPromo %>,
                   promo: <%= produto.promo %>
                 },
+                <% } %>
               <% }) %>
             ];
           </script>
