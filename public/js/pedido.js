@@ -74,6 +74,20 @@ async function finalizar() {
         });
 
         const data = await response.json();
+        if(data.sucess == true){
+          document.getElementById('alerta').classList.toggle('hidden');
+          document.getElementById('alerta').classList.toggle('opacity-0');
+          (() => {
+            setTimeout(() => {
+                document.getElementById('alerta').classList.toggle('opacity-0');
+            }, 4000);
+        })();
+        (() => {
+            setTimeout(() => {
+                document.getElementById('alerta').classList.toggle('hidden');
+            }, 4500);
+        })();
+        }
         pedido = []; 
         total(); 
         document.getElementById("nomeCliente").value = '';

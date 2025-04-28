@@ -5,8 +5,8 @@ const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
 const session = require('express-session');
-const flashMiddleware = require('./middleware/flash');
 const flash = require('connect-flash');
+const flashMiddleware = require('./middleware/flash');
 const colors = require('colors');
 
 const app = express(); 
@@ -23,15 +23,16 @@ function setupApp(app, viewsPath, routes) {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json({ limit: "10mb" }));
-    app.use('/', require(routes));
-    app.use(flash());
-    app.use(flashMiddleware);
     app.use(session({
         secret: process.env.session,
         resave: false,
         saveUninitialized: true,
-      }));
+    }));
+    app.use(flash());
+    app.use(flashMiddleware);
+    app.use('/', require(routes)); 
 }
+
 
 setupApp(app, 'views', './routes/conf');
 setupApp(appSer, 'views', './routes/ser');
