@@ -273,19 +273,19 @@ class Database {
                 const dataPedido = new Date(pedido.pedido.data);
                 if (validOthersCamps(dia, dataPedido)) {
                     if(dataPedido.getDate() == dia.getDate()){
-                        estatistica[6]++;
+                        estatistica[6] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 1)){
-                        estatistica[5]++;
+                        estatistica[5] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 2)){
-                        estatistica[4]++;
+                        estatistica[4] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 3)){
-                        estatistica[3]++;
+                        estatistica[3] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 4)){
-                        estatistica[2]++;
+                        estatistica[2] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 5)){
-                        estatistica[1]++;
+                        estatistica[1] += Number(pedido.pedido.preco);
                     }else if(dataPedido.getDate() == (dia.getDate() - 6)){
-                        estatistica[0]++;
+                        estatistica[0] += Number(pedido.pedido.preco);
                     }
                 }
             }
@@ -311,67 +311,67 @@ class Database {
                     const diaDoPedido = dataPedido.getDate(); 
     
                     if (diaDoPedido == dia.getDate()) {
-                        estatistica[30]++; 
+                        estatistica[30] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 1)) {
-                        estatistica[29]++;  
+                        estatistica[29] += Number(pedido.pedido.preco); 
                     } else if (diaDoPedido == (dia.getDate() - 2)) {
-                        estatistica[28]++;  
+                        estatistica[28] += Number(pedido.pedido.preco); 
                     } else if (diaDoPedido == (dia.getDate() - 3)) {
-                        estatistica[27]++;
+                        estatistica[27] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 4)) {
-                        estatistica[26]++;
+                        estatistica[26] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 5)) {
-                        estatistica[25]++;
+                        estatistica[25] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 6)) {
-                        estatistica[24]++;
+                        estatistica[24]  += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 7)) {
-                        estatistica[23]++;
+                        estatistica[23] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 8)) {
-                        estatistica[22]++;
+                        estatistica[22] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 9)) {
-                        estatistica[21]++;
+                        estatistica[21] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 10)) {
-                        estatistica[20]++;
+                        estatistica[20] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 11)) {
-                        estatistica[19]++;
+                        estatistica[19] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 12)) {
-                        estatistica[18]++;
+                        estatistica[18] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 13)) {
-                        estatistica[17]++;
+                        estatistica[17] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 14)) {
-                        estatistica[16]++;
+                        estatistica[16] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 15)) {
-                        estatistica[15]++;
+                        estatistica[15] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 16)) {
-                        estatistica[14]++;
+                        estatistica[14] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 17)) {
-                        estatistica[13]++;
+                        estatistica[13] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 18)) {
-                        estatistica[12]++;
+                        estatistica[12] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 19)) {
-                        estatistica[11]++;
+                        estatistica[11] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 20)) {
-                        estatistica[10]++;
+                        estatistica[10] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 21)) {
-                        estatistica[9]++;
+                        estatistica[9] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 22)) {
-                        estatistica[8]++;
+                        estatistica[8] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 23)) {
-                        estatistica[7]++;
+                        estatistica[7] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 24)) {
-                        estatistica[6]++;
+                        estatistica[6] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 25)) {
-                        estatistica[5]++;
+                        estatistica[5] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 26)) {
-                        estatistica[4]++;
+                        estatistica[4] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 27)) {
-                        estatistica[3]++;
+                        estatistica[3] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 28)) {
-                        estatistica[2]++;
+                        estatistica[2] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 29)) {
-                        estatistica[1]++;
+                        estatistica[1] += Number(pedido.pedido.preco);
                     } else if (diaDoPedido == (dia.getDate() - 30)) {
-                        estatistica[0]++;
+                        estatistica[0] += Number(pedido.pedido.preco);
                     }
                 }
             }
